@@ -26,3 +26,12 @@ app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
 app.use("/management", managementRoutes);
 app.use("/sales", salesRoutes);
+
+// mongoose
+const PORT = process.env.PORT || 9000;
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() =>
+    app.listen(PORT, () => console.log(`Server running at PORT ${PORT}`))
+  )
+  .catch((err) => console.log(`${err} did not connect`));
